@@ -44,6 +44,10 @@ private slots:
 
     void on_btn4_3_clicked();
 
+    void changeDevice(int, int);
+
+    void changeVm(int, int, int);
+
 private:
     Ui::MainWindows *ui;
 };

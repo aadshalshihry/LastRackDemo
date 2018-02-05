@@ -32,10 +32,15 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background: #8dae4e; 
+   <string notr="true">QWidget{
+Background: #8dae4e; 
 margin-top: 2px;
 border-radius: 3px;
 border: 1px solid black;
+}
+QWidget[state=true]{
+	color:red;
+}
 </string>
   </property>
   <widget class="QLabel" name="label">
