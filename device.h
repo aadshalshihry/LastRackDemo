@@ -21,7 +21,7 @@ public:
     explicit Device(QWidget *parent = 0, QString name = "");
     Ui::Device *ui;
     void addVm(QString name);
-    void changeState(int state);
+    void changeDevState(int state);
     ~Device();
     QVector<VM*> vms;
     int vmsSize;

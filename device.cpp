@@ -36,52 +36,18 @@ void Device::addVm(QString name)
     ui->horizontalLayout_2->addWidget(vm);
     this->vmsSize++;
 }
-
-void Device::changeState(int state)
+//Changes the color of the machines to match the states
+// "state" is as follows: 1 = Online, 2 = Faulted, 3 = Offline, 4 = Degraded, 5 = Disconnected
+void Device::changeDevState(int state)
 {
-    switch(state)
-    {
-    case 1:{ui->horizontalLayoutWidget_2->setProperty("devState", 1);
-        ui->label->setProperty("devState", 1);
+
+        ui->horizontalLayoutWidget_2->setProperty("devState", state);
+        ui->label->setProperty("devState", state);
         style()->unpolish(ui->label);
         style()->polish(ui->label);
         style()->unpolish(ui->horizontalLayoutWidget_2);
-        style()->polish(ui->horizontalLayoutWidget_2);}
-    break;
-    case 2:{ui->horizontalLayoutWidget_2->setProperty("devState", 2);
-        ui->label->setProperty("devState", 2);
-        style()->unpolish(ui->label);
-        style()->polish(ui->label);
-        style()->unpolish(ui->horizontalLayoutWidget_2);
-        style()->polish(ui->horizontalLayoutWidget_2);}
-    break;
-     case 3:{ui->horizontalLayoutWidget_2->setProperty("devState", 3);
-        ui->label->setProperty("devState", 3);
-        style()->unpolish(ui->label);
-        style()->polish(ui->label);
-        style()->unpolish(ui->horizontalLayoutWidget_2);
-        style()->polish(ui->horizontalLayoutWidget_2);}
-    break;
-     case 4:{ui->horizontalLayoutWidget_2->setProperty("devState", 4);
-        ui->label->setProperty("devState", 4);
-        style()->unpolish(ui->label);
-        style()->polish(ui->label);
-        style()->unpolish(ui->horizontalLayoutWidget_2);
-        style()->polish(ui->horizontalLayoutWidget_2);}
-     break;
-    case 5:{ui->horizontalLayoutWidget_2->setProperty("devState", 5);
-       ui->label->setProperty("devState", 5);
-       style()->unpolish(ui->label);
-       style()->polish(ui->label);
-       style()->unpolish(ui->horizontalLayoutWidget_2);
-       style()->polish(ui->horizontalLayoutWidget_2);}
-     break;
-    }
+        style()->polish(ui->horizontalLayoutWidget_2);
 
-
-
-
-  //  this->setStyleSheet("background: green; margin-top: 2px; border-radius: 3px;border: 1px solid black;");
 }
 Device::~Device()
 {

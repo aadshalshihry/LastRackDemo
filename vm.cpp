@@ -21,36 +21,15 @@ VM::VM(QWidget *parent, QString name):
 //    QSize size = ui->label->sizeHint();
 //    this->setMaximumWidth(size.width() + 25);
 }
+
+//Changes the color of the Vms to match the states
+//as follows: 1 = Online, 2 = Faulted, 3 = Offline, 4 = Degraded, 5 = Disconnected
 void VM::changeVmState(int state)
 {
-    switch(state)
-    {
-    case 1:{ui->label->setProperty("vmState", 1);
-        style()->unpolish(ui->label);
-        style()->polish(ui->label);}
-    break;
+    ui->label->setProperty("vmState", state);
+    style()->unpolish(ui->label);
+    style()->polish(ui->label);
 
-    case 2:{ui->label->setProperty("vmState", 2);
-        style()->unpolish(ui->label);
-        style()->polish(ui->label);}
-    break;
-
-    case 3:{ui->label->setProperty("vmState", 3);
-        style()->unpolish(ui->label);
-        style()->polish(ui->label);}
-    break;
-
-    case 4:{ui->label->setProperty("vmState", 4);
-        style()->unpolish(ui->label);
-        style()->polish(ui->label);}
-    break;
-
-    case 5:{ui->label->setProperty("vmState", 5);
-        style()->unpolish(ui->label);
-        style()->polish(ui->label);}
-    break;
-
-    }
 }
 
 VM::~VM()
