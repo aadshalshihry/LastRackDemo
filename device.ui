@@ -32,15 +32,16 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QWidget{
-Background: #8dae4e; 
+   <string notr="true">
+Background: #8dae4e;
 margin-top: 2px;
 border-radius: 3px;
 border: 1px solid black;
-}
-QWidget[state=true]{
-	color:red;
-}
+
+
+
+
+
 </string>
   </property>
   <widget class="QLabel" name="label">
@@ -73,15 +74,55 @@ QWidget[state=true]{
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">padding: 0px;
+    <string notr="true">[devState=&quot;1&quot;]
+{
+/*operational*/
+background:#8CAE4E;
+padding: 0px;
 border: 0px;
-border-radius: 0px;</string>
+border-radius: 0px;
+}
+[devState=&quot;2&quot;]
+{
+/*faulted*/
+background:#B53322;
+padding: 0px;
+border: 0px;
+border-radius: 0px;
+}
+[devState=&quot;3&quot;]
+{
+/*offline*/
+background:#FDF988;
+padding: 0px;
+border: 0px;
+border-radius: 0px;
+}
+[devState=&quot;4&quot;]
+{
+/*degraded*/
+background:#E65D2E;
+padding: 0px;
+border: 0px;
+border-radius: 0px;
+}
+[devState=&quot;5&quot;]
+{
+background:black;
+padding: 0px;
+border: 0px;
+border-radius: 0px;
+
+}</string>
    </property>
    <property name="text">
     <string>Device</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
+   </property>
+   <property name="devState" stdset="0">
+    <number>1</number>
    </property>
   </widget>
   <widget class="QWidget" name="widget" native="true">
@@ -90,7 +131,7 @@ border-radius: 0px;</string>
      <x>0</x>
      <y>30</y>
      <width>400</width>
-     <height>31</height>
+     <height>32</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -106,11 +147,53 @@ border-radius: 0px;</string>
     </size>
    </property>
    <property name="styleSheet">
-    <string notr="true">margin: 0px;
+    <string notr="true">[devState=&quot;1&quot;]
+{
+/*operational*/
+background:#8CAE4E;
+margin: 0px;
 border-radius: 0px;
 border: 0px;
-/*border-top: 1px solid black;
-/*background: blue;</string>
+}
+[devState=&quot;2&quot;]
+{
+/*faulted*/
+background:#B53322;
+margin: 0px;
+border-radius: 0px;
+border: 0px;
+}
+[devState=&quot;3&quot;]
+{
+/*offline*/
+background:#FDF988;
+margin: 0px;
+border-radius: 0px;
+border: 0px;
+}
+[devState=&quot;4&quot;]
+{
+/*degraded*/
+background:#E65D2E;
+margin: 0px;
+border-radius: 0px;
+border: 0px;
+}
+[devState=&quot;5&quot;]
+{
+/*offline*/
+background:black;
+margin: 0px;
+border-radius: 0px;
+border: 0px;
+}
+
+
+
+</string>
+   </property>
+   <property name="devState" stdset="0">
+    <number>1</number>
    </property>
    <widget class="QWidget" name="horizontalLayoutWidget_2">
     <property name="geometry">

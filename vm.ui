@@ -41,10 +41,36 @@ margin-left: 5px;</string>
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">[vmState=&quot;1&quot;]
+{
+/*operational*/
+background:#8CAE4E;
+}
+[vmState=&quot;2&quot;]
+{
+/*faulted*/
+background:#B53322;
+}
+[vmState=&quot;3&quot;]
+{
+/*offline*/
+background:#FDF988;
+}
+[vmState=&quot;4&quot;]
+{
+/*degraded*/
+background:#E65D2E;
+}
+[vmState=&quot;5&quot;]
+{
+background:black;
+}</string>
      </property>
      <property name="text">
       <string>SomethinToo too</string>
+     </property>
+     <property name="vmState" stdset="0">
+      <number>1</number>
      </property>
     </widget>
    </item>

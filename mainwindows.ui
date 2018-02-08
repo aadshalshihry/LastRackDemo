@@ -26,12 +26,7 @@
    <string>MainWindows</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">
-#btn1:hover{
-	border : 2px solid gray;
-	border-style : dotted;
-	background-color: rgb(255, 0, 10);
-}</string>
+   <string notr="true"/>
   </property>
   <widget class="QPushButton" name="btn1">
    <property name="geometry">
