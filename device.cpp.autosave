@@ -53,7 +53,7 @@ void Device::changeDevState(int state)
             this->vms[i]->changeVmState(5);
             this->vms[i]->~VM();
         }
-        this->vms = {};
+        this->vms = {};     
     }
 }
 Device::~Device()

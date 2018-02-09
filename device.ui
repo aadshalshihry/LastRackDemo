@@ -83,7 +83,7 @@ border-radius:50px;
    <property name="styleSheet">
     <string notr="true">QLabel
 {
-background:#8CAE4E;
+background:	#8CAE4E	;
 padding: 0px;
 border: 0px;
 border-radius: 0px;
@@ -99,7 +99,7 @@ border-radius: 0px;
 [devState=&quot;2&quot;]
 {
 /*faulted*/
-background:#B53322;
+background:#C43826;
 padding: 0px;
 border: 0px;
 border-radius: 0px;
@@ -107,7 +107,7 @@ border-radius: 0px;
 [devState=&quot;3&quot;]
 {
 /*offline*/
-background:#FDF988;
+background:	#FFFF00;
 padding: 0px;
 border: 0px;
 border-radius: 0px;
@@ -178,7 +178,7 @@ border: 0px;
 [devState=&quot;2&quot;]
 {
 /*faulted*/
-background:#B53322;
+background:#C43826;
 margin: 0px;
 border-radius: 0px;
 border: 0px;
@@ -186,7 +186,7 @@ border: 0px;
 [devState=&quot;3&quot;]
 {
 /*offline*/
-background:#FDF988;
+background:	#FFFF00;
 margin: 0px;
 border-radius: 0px;
 border: 0px;
