@@ -53,6 +53,8 @@ void Device::changeDevState(int state)
             this->vms[i]->~VM();
         }
         this->vms = {};
+        this->setMinimumHeight(0);
+        this->ui->widget->setMinimumHeight(0);
     }
 }
 Device::~Device()
