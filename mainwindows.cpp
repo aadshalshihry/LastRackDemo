@@ -9,10 +9,8 @@ MainWindows::MainWindows(QWidget *parent) :
 {
     ui->setupUi(this);
 
-
     rack = new Rack(this);
     rack->addDumyRecord();
-
 }
 
 MainWindows::~MainWindows()
@@ -133,7 +131,6 @@ void MainWindows::on_btn4_2_clicked()
             cur2->changeVmState(4);
         }
 }
-
 
 // offline
 void MainWindows::on_btn4_3_clicked()

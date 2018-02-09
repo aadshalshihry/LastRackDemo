@@ -6,8 +6,6 @@ VM::VM(QWidget *parent) :
     ui(new Ui::VM)
 {
     ui->setupUi(this);
-//    QSize size = ui->label->sizeHint();
-//    this->setMaximumWidth(size.width() + 15);
 }
 
 VM::VM(QWidget *parent, QString name):
@@ -17,9 +15,6 @@ VM::VM(QWidget *parent, QString name):
     ui->setupUi(this);
     this->name = name;
     ui->label->setText(this->name);
-
-//    QSize size = ui->label->sizeHint();
-//    this->setMaximumWidth(size.width() + 25);
 }
 
 //Changes the color of the Vms to match the states
@@ -29,7 +24,6 @@ void VM::changeVmState(int state)
     ui->label->setProperty("vmState", state);
     style()->unpolish(ui->label);
     style()->polish(ui->label);
-
 }
 
 VM::~VM()

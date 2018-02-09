@@ -16,15 +16,12 @@ Device::Device(QWidget *parent, QString name):
     QWidget(parent),
     ui(new Ui::Device)
 {
-
     ui->setupUi(this);
     this->name = name;
     this->vms = {};
     vmsSize = 0;
     ui->label->setText(this->name);
     ui->horizontalLayout_2->setAlignment(Qt::AlignLeft);
-
-
 }
 
 void Device::addVm(QString name)
@@ -36,18 +33,30 @@ void Device::addVm(QString name)
     ui->horizontalLayout_2->addWidget(vm);
     this->vmsSize++;
 }
+void Device::removeVm(int vmId)
+{
+    this->vms[vmId]->~VM();
+}
 //Changes the color of the machines to match the states
 // "state" is as follows: 1 = Online, 2 = Faulted, 3 = Offline, 4 = Degraded, 5 = Disconnected
 void Device::changeDevState(int state)
 {
-
-        ui->horizontalLayoutWidget_2->setProperty("devState", state);
-        ui->label->setProperty("devState", state);
-        style()->unpolish(ui->label);
-        style()->polish(ui->label);
-        style()->unpolish(ui->horizontalLayoutWidget_2);
-        style()->polish(ui->horizontalLayoutWidget_2);
-
+    ui->horizontalLayoutWidget_2->setProperty("devState", state);
+    ui->label->setProperty("devState", state);
+    style()->unpolish(ui->label);
+    style()->polish(ui->label);
+    style()->unpolish(ui->horizontalLayoutWidget_2);
+    style()->polish(ui->horizontalLayoutWidget_2);
+    //if its disconnected, also disconnects VMs attatched to it
+    if(state == 5 && vms[0]!=NULL)
+    {
+        for(int i=0; i<vms.length(); i++)
+        {
+            this->vms[i]->changeVmState(5);
+            this->removeVm(i);
+            this->vms[i]=NULL;
+        }
+    }
 }
 Device::~Device()
 {
