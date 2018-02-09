@@ -41,29 +41,42 @@ margin-left: 5px;</string>
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">[vmState=&quot;1&quot;]
+      <string notr="true">QLabel
+{
+border:1px solid black;
+}
+[vmState=&quot;1&quot;]
 {
 /*operational*/
 background:#8CAE4E;
+border:1px solid black;
+
 }
 [vmState=&quot;2&quot;]
 {
 /*faulted*/
 background:#B53322;
+border:1px solid black;
+
 }
 [vmState=&quot;3&quot;]
 {
 /*offline*/
 background:#FDF988;
+border:1px solid black;
+
 }
 [vmState=&quot;4&quot;]
 {
 /*degraded*/
 background:#E65D2E;
+border:1px solid black;
+
 }
 [vmState=&quot;5&quot;]
 {
 background:black;
+border:1px solid black;
 }</string>
      </property>
      <property name="text">

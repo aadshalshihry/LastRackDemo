@@ -74,7 +74,14 @@ border: 1px solid black;
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">[devState=&quot;1&quot;]
+    <string notr="true">QLabel
+{
+background:#8CAE4E;
+padding: 0px;
+border: 0px;
+border-radius: 0px;
+}
+[devState=&quot;1&quot;]
 {
 /*operational*/
 background:#8CAE4E;
@@ -112,7 +119,6 @@ background:black;
 padding: 0px;
 border: 0px;
 border-radius: 0px;
-
 }</string>
    </property>
    <property name="text">
@@ -147,7 +153,14 @@ border-radius: 0px;
     </size>
    </property>
    <property name="styleSheet">
-    <string notr="true">[devState=&quot;1&quot;]
+    <string notr="true">QWidget
+{
+background:#8CAE4E;
+margin: 0px;
+border-radius: 0px;
+border: 0px;
+}
+[devState=&quot;1&quot;]
 {
 /*operational*/
 background:#8CAE4E;

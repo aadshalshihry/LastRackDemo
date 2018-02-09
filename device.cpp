@@ -48,14 +48,14 @@ void Device::changeDevState(int state)
     style()->unpolish(ui->horizontalLayoutWidget_2);
     style()->polish(ui->horizontalLayoutWidget_2);
     //if its disconnected, also disconnects VMs attatched to it
-    if(state == 5 && vms[0]!=NULL)
+    if(state == 5)
     {
-        for(int i=0; i<vms.length(); i++)
+        for(int i=0; i<vms.size(); i++)
         {
             this->vms[i]->changeVmState(5);
             this->removeVm(i);
-            this->vms[i]=NULL;
         }
+        this->vms = {};
     }
 }
 Device::~Device()
