@@ -1,7 +1,7 @@
 #include "device.h"
 #include "ui_device.h"
 #include <QHBoxLayout>
-
+#include <QToolTip>
 
 
 Device::Device(QWidget *parent) :
@@ -22,6 +22,7 @@ Device::Device(QWidget *parent, QString name):
     vmsSize = 0;
     ui->label->setText(this->name);
     ui->horizontalLayout_2->setAlignment(Qt::AlignLeft);
+    this->setToolTip("Host: IFS <br />DNS:ifs.r30.int.smmtt<br />Processor:<span style=\"color:green\">online</span><br />LAN A :<span style=\"color:green\">online</span><br />LAN B:<span style=\"color:green\">online</span><br />PCOIP:<span style=\"color:green\">online</span><br /><br />PDU: SER-1 PDU A<br />DNS:ser1pdua.r30.int.smtt<br />   &nbsp;&nbsp;&nbsp;&nbsp;Outlet:<span style=\"color:green\">online</span><br />");
 }
 
 void Device::addVm(QString name)
@@ -29,7 +30,7 @@ void Device::addVm(QString name)
     VM *vm = new VM(ui->widget, name);
     this->vms.append(vm);
     this->setMinimumHeight(60);
-    ui->widget->setMinimumHeight(148);
+    ui->widget->setMinimumHeight(296);
     ui->horizontalLayout_2->addWidget(vm);
     this->vmsSize++;
 }

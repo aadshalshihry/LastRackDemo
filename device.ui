@@ -32,11 +32,18 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">
+   <string notr="true">QWidget{
 Background: #8dae4e;
 margin-top: 2px;
 border-radius: 3px;
 border: 1px solid black;
+}
+QToolTip
+{
+color:white;
+Background:black;
+border-radius:50px;
+}
 
 
 
