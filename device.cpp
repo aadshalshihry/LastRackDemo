@@ -33,10 +33,7 @@ void Device::addVm(QString name)
     ui->horizontalLayout_2->addWidget(vm);
     this->vmsSize++;
 }
-void Device::removeVm(int vmId)
-{
-    this->vms[vmId]->~VM();
-}
+
 //Changes the color of the machines to match the states
 // "state" is as follows: 1 = Online, 2 = Faulted, 3 = Offline, 4 = Degraded, 5 = Disconnected
 void Device::changeDevState(int state)
@@ -53,7 +50,7 @@ void Device::changeDevState(int state)
         for(int i=0; i<vms.size(); i++)
         {
             this->vms[i]->changeVmState(5);
-            this->removeVm(i);
+            this->vms[i]->~VM();
         }
         this->vms = {};
     }
