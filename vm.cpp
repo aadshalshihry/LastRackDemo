@@ -12,6 +12,7 @@ VM::VM(QWidget *parent, QString name):
     QWidget(parent),
     ui(new Ui::VM)
 {
+    this->vmState = 1;
     ui->setupUi(this);
     this->name = name;
     ui->label->setText(this->name);
@@ -21,9 +22,11 @@ VM::VM(QWidget *parent, QString name):
 //as follows: 1 = Online, 2 = Faulted, 3 = Offline, 4 = Degraded, 5 = Disconnected
 void VM::changeVmState(int state)
 {
+    this->vmState = state;
     ui->label->setProperty("vmState", state);
     style()->unpolish(ui->label);
     style()->polish(ui->label);
+
 }
 
 VM::~VM()

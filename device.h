@@ -25,6 +25,7 @@ public:
     ~Device();
     QVector<VM*> vms;
     int vmsSize;
+    int deviceState;
 
 
 private:

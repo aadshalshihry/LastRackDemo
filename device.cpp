@@ -19,10 +19,11 @@ Device::Device(QWidget *parent, QString name):
     ui->setupUi(this);
     this->name = name;
     this->vms = {};
+    this->deviceState = 1;
     vmsSize = 0;
     ui->label->setText(this->name);
     ui->horizontalLayout_2->setAlignment(Qt::AlignLeft);
-    this->setToolTip("Host: IFS <br />DNS:ifs.r30.int.smmtt<br />Processor:<span style=\"color:green\">online</span><br />LAN A :<span style=\"color:green\">online</span><br />LAN B:<span style=\"color:green\">online</span><br />PCOIP:<span style=\"color:green\">online</span><br /><br />PDU: SER-1 PDU A<br />DNS:ser1pdua.r30.int.smtt<br />   &nbsp;&nbsp;&nbsp;&nbsp;Outlet:<span style=\"color:green\">online</span><br />");
+    this->setToolTip("Host: IFS <br />DNS:ifs.r30.int.smmtt<br />Processor:<span style=\"color:green\">online</span><br />LAN A :<span style=\"color:green\">online</span><br />LAN B:<span style=\"color:green\">online</span><br />PCOIP:<span style=\"color:green\">online</span><br /><br />PDU: SER-1 PDU A<br />DNS:ser1pdua.r30.int.smtt<br />&nbsp;&nbsp;&nbsp;&nbsp;Outlet:<span style=\"color:green\">online</span><br />");
 }
 
 void Device::addVm(QString name)
@@ -39,6 +40,7 @@ void Device::addVm(QString name)
 // "state" is as follows: 1 = Online, 2 = Faulted, 3 = Offline, 4 = Degraded, 5 = Disconnected
 void Device::changeDevState(int state)
 {
+    this->deviceState = state;
     ui->horizontalLayoutWidget_2->setProperty("devState", state);
     ui->label->setProperty("devState", state);
     style()->unpolish(ui->label);
@@ -54,6 +56,8 @@ void Device::changeDevState(int state)
             this->vms[i]->~VM();
         }
         this->vms = {};
+        //resizes the device widget when Vms are removed
+        this->setMinimumHeight(30);
     }
 }
 Device::~Device()

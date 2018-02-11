@@ -16,6 +16,7 @@ public:
     explicit VM(QWidget *parent = 0);
     explicit VM(QWidget *parent = 0, QString name = "");
     int size;
+    int vmState;
     void changeVmState(int state);
     ~VM();
 
