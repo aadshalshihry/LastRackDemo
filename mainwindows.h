@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QString>
 #include "rack.h"
+#include "QHBoxLayout"
 
 
 namespace Ui {
@@ -18,6 +19,11 @@ public:
     explicit MainWindows(QWidget *parent = 0);
     ~MainWindows();
     Rack *rack;
+    Rack *rack2;
+    Rack *rack3;
+    int racknum=0;
+    int sizeW;
+    std::vector<std::shared_ptr<Rack*> > rack_list;
 
 private slots:
 

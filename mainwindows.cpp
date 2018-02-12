@@ -3,15 +3,38 @@
 #include "rack.h"
 #include <QDebug>
 #include <iostream>
+#include "QScrollArea"
+#include <memory>
+
 MainWindows::MainWindows(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainWindows)
 {
     ui->setupUi(this);
 
+    racknum = 3;
+    sizeW = 400*racknum;
+    ui->scrollAreaWidgetContents->resize(sizeW,ui->scrollAreaWidgetContents->height());
+    //resize based on num racks which allows for scaleability, currently being hard set to 3 racks, verticle will need to be dynamicaly built based on racks size as well, nSure why resize
+    //isn't functioning correctly.
     rack = new Rack(this);
+    rack2 = new Rack(this);
+    rack3 = new Rack(this);
+    QHBoxLayout *scrollLayout = new QHBoxLayout();
+    //ui->scrollArea->setWidgetResizable(true);
+    ui->scrollAreaWidgetContents->setLayout(scrollLayout);
+    scrollLayout->addWidget(rack);
+   //ui->scrollAreaWidgetContents->resize((ui->scrollAreaWidgetContents->width()+400),ui->scrollAreaWidgetContents->height());
+    scrollLayout->addWidget(rack2);
+    //ui->scrollAreaWidgetContents->resize((ui->scrollAreaWidgetContents->width()+400),ui->scrollAreaWidgetContents->height());
+    scrollLayout->addWidget(rack3);
+   // ui->scrollAreaWidgetContents->resize((ui->scrollAreaWidgetContents->width()+400),ui->scrollAreaWidgetContents->height());
+
     rack->addDumyRecord();
+    rack2->addDumyRecord();
+    rack3->addDumyRecord();
 }
+
 
 MainWindows::~MainWindows()
 {

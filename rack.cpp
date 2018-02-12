@@ -10,9 +10,6 @@ Rack::Rack(QWidget *parent) :
     this->devices = {};
     this->deviceSize = 0;
 
-
-
-
     ui->scrollAreaWidgetContents->layout()->setAlignment(Qt::AlignTop);
 }
 
