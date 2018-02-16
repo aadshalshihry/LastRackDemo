@@ -18,12 +18,11 @@ class MainWindows : public QWidget
 public:
     explicit MainWindows(QWidget *parent = 0);
     ~MainWindows();
+    Rack* addRacks(QHBoxLayout* scrollLayout);
+    QVector<Rack*> racks;
     Rack *rack;
-    Rack *rack2;
-    Rack *rack3;
     int racknum=0;
     int sizeW;
-    std::vector<std::shared_ptr<Rack*> > rack_list;
 
 private slots:
 
