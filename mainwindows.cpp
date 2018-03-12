@@ -19,11 +19,11 @@ MainWindows::MainWindows(QWidget *parent) :
     //resize based on num racks which allows for scaleability, currently being hard set to 3 racks, verticle will need to be dynamicaly built based on racks size as well, nSure why resize
     //isn't functioning correctly.
     QHBoxLayout *scrollLayout = new QHBoxLayout();
-    //ui->scrollArea->setWidgetResizable(true);
     ui->scrollAreaWidgetContents->setLayout(scrollLayout);
     this->racks.append(addRacks(scrollLayout));
     this->racks.append(addRacks(scrollLayout));
     this->racks.append(addRacks(scrollLayout));
+
 }
 
 
@@ -188,3 +188,32 @@ void MainWindows::on_btn4_3_clicked()
 }
 
 
+
+void MainWindows::on_lineEdit_2_returnPressed()
+{
+
+     QString temp1 = ui->lineEdit_2->text();
+     if(temp1.isEmpty())
+     {
+         for(int i=0; i<3;i++)
+         {
+             for(int j=0;j< racks[i]->devices.size();j++)
+             {
+                  racks[i]->devices[j]->show();
+             }
+          }
+     }
+     else
+     {
+        for(int i=0; i<3;i++)
+        {
+            for(int j=0;j< racks[i]->devices.size();j++)
+            {
+                QString temp2 = racks[i]->devices[j]->name;
+                if((QString::compare(temp1, temp2, Qt::CaseInsensitive)))
+                 racks[i]->devices[j]->hide();
+
+            }
+         }
+     }
+}

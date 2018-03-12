@@ -65,30 +65,30 @@ void Rack::addDumyRecord()
     this->devices.append(d9);
     ui->scrollAreaWidgetContents->layout()->addWidget(d9);
 
-    Device *d11 = new Device(this, "VMH-7");
+    Device *d10 = new Device(this, "VMH-7");
+    this->devices.append(d10);
+    this->deviceSize++;
+    ui->scrollAreaWidgetContents->layout()->addWidget(d10);
+
+    Device *d11 = new Device(this, "VMH-8");
     this->devices.append(d11);
     this->deviceSize++;
     ui->scrollAreaWidgetContents->layout()->addWidget(d11);
 
-    Device *d22 = new Device(this, "VMH-8");
-    this->devices.append(d22);
+    Device *d12 = new Device(this, "VMHost-1");
+    this->devices.append(d12);
     this->deviceSize++;
-    ui->scrollAreaWidgetContents->layout()->addWidget(d22);
+    ui->scrollAreaWidgetContents->layout()->addWidget(d12);
 
-    Device *d23 = new Device(this, "VMHost-1");
-    this->devices.append(d23);
+    Device *d13 = new Device(this, "VMHost-2");
+    this->devices.append(d13);
     this->deviceSize++;
-    ui->scrollAreaWidgetContents->layout()->addWidget(d23);
+    ui->scrollAreaWidgetContents->layout()->addWidget(d13);
 
-    Device *d24 = new Device(this, "VMHost-2");
-    this->devices.append(d24);
+    Device *d14 = new Device(this, "VMHost-2");
+    this->devices.append(d14);
     this->deviceSize++;
-    ui->scrollAreaWidgetContents->layout()->addWidget(d24);
-
-    Device *d25 = new Device(this, "VMHost-2");
-    this->devices.append(d25);
-    this->deviceSize++;
-    ui->scrollAreaWidgetContents->layout()->addWidget(d25);
+    ui->scrollAreaWidgetContents->layout()->addWidget(d14);
 }
 
 Rack::~Rack()

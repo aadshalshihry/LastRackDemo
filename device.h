@@ -26,9 +26,6 @@ public:
     QVector<VM*> vms;
     int vmsSize;
     int deviceState;
-
-
-private:
     QString name;
 
 };

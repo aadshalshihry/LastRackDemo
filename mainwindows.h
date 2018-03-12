@@ -20,6 +20,8 @@ public:
     ~MainWindows();
     Rack* addRacks(QHBoxLayout* scrollLayout);
     QVector<Rack*> racks;
+
+
     Rack *rack;
     int racknum=0;
     int sizeW;
@@ -48,6 +50,8 @@ private slots:
     void on_btn4_4_clicked();
 
     void on_btn4_3_clicked();
+
+    void on_lineEdit_2_returnPressed();
 
 private:
     Ui::MainWindows *ui;
