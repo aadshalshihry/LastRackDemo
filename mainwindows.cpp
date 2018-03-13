@@ -51,8 +51,8 @@ void MainWindows::on_pushButton_5_clicked()
     }
 
 }
-//Buttons that control the color of the devices
 
+//Buttons that control the color of the devices
 void MainWindows::on_btn1_clicked()
 {
     int rackId = ui->spinBox_3->text().toInt();
@@ -186,33 +186,45 @@ void MainWindows::on_btn4_3_clicked()
                 cur2->changeVmState(5);
             }
 }
-
-
-
-void MainWindows::on_lineEdit_2_returnPressed()
+//This code is to use the enter button to filter.
+/*void MainWindows::on_lineEdit_2_returnPressed()
 {
-
      QString temp1 = ui->lineEdit_2->text();
      if(temp1.isEmpty())
-     {
          for(int i=0; i<racks.size();i++)
-         {
              for(int j=0;j< racks[i]->devices.size();j++)
-             {
                   racks[i]->devices[j]->show();
-             }
-          }
-     }
+
      else
-     {
         for(int i=0; i<racks.size();i++)
-        {
             for(int j=0;j< racks[i]->devices.size();j++)
             {
                 QString temp2 = racks[i]->devices[j]->name;
                 if(!(temp2.contains(temp1, Qt::CaseInsensitive)))
-                 racks[i]->devices[j]->hide();
+                    racks[i]->devices[j]->hide();
             }
-         }
-     }
+}*/
+
+void MainWindows::on_lineEdit_2_textChanged(const QString &arg1)
+{
+    QString temp1 = ui->lineEdit_2->text();
+    if(temp1.isEmpty())
+        for(int i=0; i<racks.size();i++)
+            for(int j=0;j< racks[i]->devices.size();j++)
+                 racks[i]->devices[j]->show();
+
+    else
+    {
+        for(int i=0; i<racks.size();i++)
+            for(int j=0;j< racks[i]->devices.size();j++)
+                 racks[i]->devices[j]->hide();
+
+       for(int i=0; i<racks.size();i++)
+           for(int j=0;j< racks[i]->devices.size();j++)
+           {
+               QString temp2 = racks[i]->devices[j]->name;
+               if((temp2.contains(temp1, Qt::CaseInsensitive)))
+                   racks[i]->devices[j]->show();
+           }
+    }
 }

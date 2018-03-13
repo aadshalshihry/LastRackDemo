@@ -51,7 +51,9 @@ private slots:
 
     void on_btn4_3_clicked();
 
-    void on_lineEdit_2_returnPressed();
+   // void on_lineEdit_2_returnPressed();
+
+    void on_lineEdit_2_textChanged(const QString &arg1);
 
 private:
     Ui::MainWindows *ui;
