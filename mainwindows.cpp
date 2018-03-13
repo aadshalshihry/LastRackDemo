@@ -195,7 +195,7 @@ void MainWindows::on_lineEdit_2_returnPressed()
      QString temp1 = ui->lineEdit_2->text();
      if(temp1.isEmpty())
      {
-         for(int i=0; i<3;i++)
+         for(int i=0; i<racks.size();i++)
          {
              for(int j=0;j< racks[i]->devices.size();j++)
              {
@@ -205,14 +205,13 @@ void MainWindows::on_lineEdit_2_returnPressed()
      }
      else
      {
-        for(int i=0; i<3;i++)
+        for(int i=0; i<racks.size();i++)
         {
             for(int j=0;j< racks[i]->devices.size();j++)
             {
                 QString temp2 = racks[i]->devices[j]->name;
-                if((QString::compare(temp1, temp2, Qt::CaseInsensitive)))
+                if(!(temp2.contains(temp1, Qt::CaseInsensitive)))
                  racks[i]->devices[j]->hide();
-
             }
          }
      }
