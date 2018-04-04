@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,13 +17,15 @@ SOURCES += main.cpp\
     rack.cpp \
     device.cpp \
     vm.cpp \
-    dialog.cpp
+    dialog.cpp \
+    udpcontroller.cpp
 
 HEADERS  += mainwindows.h \
     rack.h \
     device.h \
     vm.h \
-    dialog.h
+    dialog.h \
+    udpcontroller.h
 
 FORMS    += mainwindows.ui \
     rack.ui \

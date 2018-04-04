@@ -6,10 +6,14 @@ const cors = require('cors');
 const Promise = require('bluebird');
 const data = require('./seeds/data');
 const fs = require('fs');
-
+const dgram = require('dgram');
+const udp = dgram.createSocket('udp4');
 
 // our localhost port
 const port = 4001
+
+const PORT_UDP = 4003;
+const HOST_UDP = '127.0.0.1';
 
 const app = express()
 
@@ -85,6 +89,9 @@ io.on('connection', socket => {
         } else {
           const {rackId, deviceId, state} = device;
           const result = `changeDeviceState::${rackId}::${deviceId}::${state}`;
+          udp.send(result, 0, message.length, PORT_UDP, HOST_UDP, function(err, bytes) {
+            if (err) throw err;
+          });
           socket.broadcast.emit('changeDeviceState', result);
         }
   		}
@@ -103,6 +110,9 @@ io.on('connection', socket => {
         } else {
           const {deviceId, vmId, state} = vm;
           const result = `changeVMState::${data.rackId}::${deviceId}::${vmId}::${state}`;
+          udp.send(result, 0, message.length, PORT_UDP, HOST_UDP, function(err, bytes) {
+            if (err) throw err;
+          });
           socket.broadcast.emit('changeVMState', result);
         }
       }
@@ -123,8 +133,10 @@ io.on('connection', socket => {
 
 
         const result = `changeDeviceName::${rackId}::${deviceId}::${deviceName}`;
+        udp.send(result, 0, message.length, PORT_UDP, HOST_UDP, function(err, bytes) {
+            if (err) throw err;
+          });
         socket.broadcast.emit('changeDeviceName', result);
-
       }
     })
   })

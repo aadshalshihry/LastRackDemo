@@ -2,6 +2,7 @@
 #include "ui_mainwindows.h"
 #include "rack.h"
 #include <QDebug>
+#include "udpcontroller.h"
 #include <iostream>
 #include "QScrollArea"
 #include <memory>
@@ -23,7 +24,7 @@ MainWindows::MainWindows(QWidget *parent) :
     this->racks.append(addRacks(scrollLayout));
     this->racks.append(addRacks(scrollLayout));
     this->racks.append(addRacks(scrollLayout));
-
+    udpcontroller mycontroller;
 }
 
 
@@ -49,6 +50,58 @@ void MainWindows::on_pushButton_5_clicked()
     if(str != ""){
         this->racks[rackId]->devices[vmId]->addVm(str);
     }
+
+}
+
+void MainWindows::addVm(QString rackIdstr,QString vmIdstr, QString vmName){
+    int rackId = rackIdstr.toInt();
+    int vmId = vmIdstr.toInt();
+    if(vmName != ""){
+        this->racks[rackId]->devices[vmId]->addVm(vmName);
+    }
+}
+
+void MainWindows::changeDeviceState(QString rackIdstr, QString deviceIdstr, int devStatestr){
+    int rackId = rackIdstr.toInt();
+    int deviceId = deviceIdstr.toInt();
+    int devState = devStatestr;
+
+    if(devState<0 || devState>5) return;
+
+    if(rackId < this->racks.size())
+        if(deviceId < this->racks[rackId]->devices.size())
+        {
+            auto cur = this->racks[rackId]->devices[deviceId];
+            cur->changeDevState(devState);
+        }
+}
+
+void MainWindows::changeDeviceName(QString rackIdstr, QString deviceIdstr, QString devNamestr){
+    int rackId = rackIdstr.toInt();
+    int deviceId = deviceIdstr.toInt();
+    int devName = devNamestr.toInt();
+
+    if(rackId < this->racks.size())
+        if(deviceId < this->racks[rackId]->devices.size())
+        {
+            auto cur = this->racks[rackId]->devices[deviceId];
+            //cur->changeDevName(devState);
+        }
+}
+//changeVMState
+void MainWindows::changeVMState(QString rackIdstr, QString deviceIdstr, QString vmIdstr, int vmStatestr){
+    int rackId = rackIdstr.toInt();
+    int deviceId = deviceIdstr.toInt();
+    int vmId = vmIdstr.toInt();
+    int vmState = vmStatestr;
+
+    if(rackId < this->racks.size())
+        if(deviceId < this->racks[rackId]->devices.size())
+            if(vmId < this->racks[rackId]->devices[deviceId]->vms.size())
+            {
+                auto cur2 = this->racks[rackId]->devices[deviceId]->vms[vmId];
+                cur2->changeVmState(vmState);
+            }
 }
 
 //Buttons that control the color of the devices
@@ -185,7 +238,7 @@ void MainWindows::on_btn4_3_clicked()
                 cur2->changeVmState(5);
             }
 }
-//This code is to use the enter button to filter. will commented out for now
+//This code is to use the enter button to filter.
 /*void MainWindows::on_lineEdit_2_returnPressed()
 {
      QString temp1 = ui->lineEdit_2->text();

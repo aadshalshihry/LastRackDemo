@@ -20,6 +20,12 @@ public:
     ~MainWindows();
     Rack* addRacks(QHBoxLayout* scrollLayout);
     QVector<Rack*> racks;
+    void addVm(QString rackIdstr,QString vmIdstr, QString vmName);
+    void changeDeviceState(QString rackIdstr, QString deviceIdstr, int devStatestr);
+    void changeVMState(QString rackIdstr, QString deviceIdstr, QString vmIdstr, int vmStatestr);
+    void changeDeviceName(QString rackIdstr, QString deviceIdstr, QString devNamestr);
+
+
 
 
     Rack *rack;
