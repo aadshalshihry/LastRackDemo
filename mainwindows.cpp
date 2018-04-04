@@ -49,7 +49,6 @@ void MainWindows::on_pushButton_5_clicked()
     if(str != ""){
         this->racks[rackId]->devices[vmId]->addVm(str);
     }
-
 }
 
 //Buttons that control the color of the devices
@@ -186,7 +185,7 @@ void MainWindows::on_btn4_3_clicked()
                 cur2->changeVmState(5);
             }
 }
-//This code is to use the enter button to filter.
+//This code is to use the enter button to filter. will commented out for now
 /*void MainWindows::on_lineEdit_2_returnPressed()
 {
      QString temp1 = ui->lineEdit_2->text();

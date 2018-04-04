@@ -1,0 +1,97 @@
+
+/* General */
+.container {
+
+}
+
+/* Rack */
+.listTitleRack {
+
+}
+
+.listSelect {
+	width: 400px;
+	margin-bottom: 20px;
+}
+
+.listSelectOption {
+	
+}
+
+.rackTitle {
+	font-size: 2.5em;
+}
+
+.rackDiv {
+
+	/*border: 1px black solid;*/
+	/*padding: 1em;*/
+	display: flex;
+	flex-wrap: wrap;
+}
+
+/* Device*/
+.listTitleDevice {
+	/*border: 1px black solid;*/
+	/*display: inline;*/
+	margin-right: 1em;
+	margin-bottom: 10px;
+	padding: 1px;
+}
+
+.listTitleDeviceIcon {
+	float: right;
+}
+
+.deviceDiv {
+	border: 1px black solid;
+	border-radius: 3px;
+	margin-right: 1em;
+	padding: 1em;
+	width: 48%;
+	margin-bottom: 2em;
+}
+
+@media (max-width: 992px) {
+	.deviceDiv {
+		border: 1px black solid;
+		border-radius: 3px;
+		margin-right: 1em;
+		padding: 1em;
+		width: 500px;
+		margin: 0 auto;
+		margin-bottom: 2em;
+	}
+}
+
+.deviceTitleButtons {
+	margin-bottom: 1em;
+	border-bottom: 1px gray solid;
+	padding-bottom: 1em;
+}
+
+.deviceInput {
+	width: 100%;
+	margin-bottom: 10px;
+	padding: 1px;
+}
+
+
+/* Vm */
+.vmDiv {
+
+}
+
+.vmTitleButtons {
+	display: inline;
+}
+
+.vmBtn {
+	display: inline;
+	margin-right: .5em;
+	border-radius: 3em;
+}
+
+.listTitleVm {
+
+}

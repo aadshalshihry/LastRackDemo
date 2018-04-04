@@ -1,0 +1,2 @@
+export const SHOW_ALL_INFO = "SHOW_ALL_INFO";
+export const SOCKET_CREATED = "SOCKET_CREATED";
