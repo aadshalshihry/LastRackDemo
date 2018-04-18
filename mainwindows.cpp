@@ -25,6 +25,10 @@ MainWindows::MainWindows(QWidget *parent) :
     this->racks.append(addRacks(scrollLayout));
     this->racks.append(addRacks(scrollLayout));
     udpcontroller mycontroller;
+    connect(&mycontroller, SIGNAL(changeDeviceStateSignal(QString, QString, int)),
+            this, SLOT(changeDeviceStateSlot(QString,QString,int)));
+    connect(&mycontroller, SIGNAL(changeDeviceNameSignal(QString,QString,QString)),
+            this, SLOT(changeDeviceNameSlot(QString,QString,QString)));
 }
 
 
@@ -53,12 +57,16 @@ void MainWindows::on_pushButton_5_clicked()
 
 }
 
-void MainWindows::addVm(QString rackIdstr,QString vmIdstr, QString vmName){
+void MainWindows::addVm(QString rackIdstr,QString deviceIdstr, QString vmIdstr, int vmStatestr, QString vmName){
     int rackId = rackIdstr.toInt();
     int vmId = vmIdstr.toInt();
     if(vmName != ""){
         this->racks[rackId]->devices[vmId]->addVm(vmName);
     }
+}
+
+void MainWindows::addVmSlot(QString rackIdstr,QString deviceIdstr, QString vmIdstr, int vmStatestr, QString vmName){
+    addVm(rackIdstr, deviceIdstr, vmIdstr, vmStatestr, vmName);
 }
 
 void MainWindows::changeDeviceState(QString rackIdstr, QString deviceIdstr, int devStatestr){
@@ -76,18 +84,24 @@ void MainWindows::changeDeviceState(QString rackIdstr, QString deviceIdstr, int 
         }
 }
 
+void MainWindows::changeDeviceStateSlot(QString rackIdstr, QString deviceIdstr, int devStatestr){
+    changeDeviceState(rackIdstr,deviceIdstr,devStatestr);
+}
 void MainWindows::changeDeviceName(QString rackIdstr, QString deviceIdstr, QString devNamestr){
     int rackId = rackIdstr.toInt();
     int deviceId = deviceIdstr.toInt();
-    int devName = devNamestr.toInt();
 
     if(rackId < this->racks.size())
         if(deviceId < this->racks[rackId]->devices.size())
         {
             auto cur = this->racks[rackId]->devices[deviceId];
-            //cur->changeDevName(devState);
+            cur->name = devNamestr;
         }
 }
+void MainWindows::changeDeviceNameSlot(QString rackIdstr, QString deviceIdstr, QString devNamestr){
+    changeDeviceName(rackIdstr, deviceIdstr, devNamestr);
+}
+
 //changeVMState
 void MainWindows::changeVMState(QString rackIdstr, QString deviceIdstr, QString vmIdstr, int vmStatestr){
     int rackId = rackIdstr.toInt();
@@ -102,6 +116,10 @@ void MainWindows::changeVMState(QString rackIdstr, QString deviceIdstr, QString 
                 auto cur2 = this->racks[rackId]->devices[deviceId]->vms[vmId];
                 cur2->changeVmState(vmState);
             }
+}
+
+void MainWindows::changeVMStateSlot(QString rackIdstr, QString deviceIdstr, QString vmIdstr, int vmStatestr){
+    changeVMState(rackIdstr, deviceIdstr, vmIdstr, vmStatestr);
 }
 
 //Buttons that control the color of the devices

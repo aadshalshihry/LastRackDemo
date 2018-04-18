@@ -24,12 +24,17 @@ private:
     //emit(interrupt_handler(handle_error(dispatchTable[arg[0]](split.reduce)));*/
 
 signals:
+    void addVmSignal(QString rackIdstr,QString deviceIdstr, QString vmIdstr, int vmStatestr, QString vmName);
+    void changeDeviceStateSignal(QString rackIdstr, QString deviceIdstr, int devStatestr);
+    void changeVMStateSignal(QString rackIdstr, QString deviceIdstr, QString vmIdstr, int vmStatestr);
+    void changeDeviceNameSignal(QString rackIdstr, QString deviceIdstr, QString devNamestr);
 
 public slots:
     //void connected();
     //void disconnected();
     //void error();
     void readyRead();
+    void onSocketError(QAbstractSocket::SocketError socketError);
 };
 
 #endif // udpcontroller_H

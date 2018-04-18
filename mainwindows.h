@@ -20,7 +20,8 @@ public:
     ~MainWindows();
     Rack* addRacks(QHBoxLayout* scrollLayout);
     QVector<Rack*> racks;
-    void addVm(QString rackIdstr,QString vmIdstr, QString vmName);
+
+    void addVm(QString rackIdstr,QString deviceIdstr, QString vmIdstr, int vmStatestr, QString vmName);
     void changeDeviceState(QString rackIdstr, QString deviceIdstr, int devStatestr);
     void changeVMState(QString rackIdstr, QString deviceIdstr, QString vmIdstr, int vmStatestr);
     void changeDeviceName(QString rackIdstr, QString deviceIdstr, QString devNamestr);
@@ -33,6 +34,11 @@ public:
     int sizeW;
 
 private slots:
+
+    void addVmSlot(QString rackIdstr,QString deviceIdstr, QString vmIdstr, int vmStatestr, QString vmName);
+    void changeDeviceStateSlot(QString rackIdstr, QString deviceIdstr, int devStatestr);
+    void changeVMStateSlot(QString rackIdstr, QString deviceIdstr, QString vmIdstr, int vmStatestr);
+    void changeDeviceNameSlot(QString rackIdstr, QString deviceIdstr, QString devNamestr);
 
     void on_pushButton_5_clicked();
 

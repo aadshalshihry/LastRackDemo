@@ -89,7 +89,10 @@ io.on('connection', socket => {
         } else {
           const {rackId, deviceId, state} = device;
           const result = `changeDeviceState::${rackId}::${deviceId}::${state}`;
-          udp.send(result, 0, message.length, PORT_UDP, HOST_UDP, function(err, bytes) {
+
+          console.log(result);
+          var buf = new Buffer(result);
+          udp.send(buf, 0, buf.length, PORT_UDP, HOST_UDP, function(err, bytes) {
             if (err) throw err;
           });
           socket.broadcast.emit('changeDeviceState', result);
@@ -110,7 +113,9 @@ io.on('connection', socket => {
         } else {
           const {deviceId, vmId, state} = vm;
           const result = `changeVMState::${data.rackId}::${deviceId}::${vmId}::${state}`;
-          udp.send(result, 0, message.length, PORT_UDP, HOST_UDP, function(err, bytes) {
+          console.log(result);
+          var buf = new Buffer(result);
+			udp.send(buf, 0, buf.length, PORT_UDP, HOST_UDP, function(err, bytes) {
             if (err) throw err;
           });
           socket.broadcast.emit('changeVMState', result);
@@ -133,7 +138,9 @@ io.on('connection', socket => {
 
 
         const result = `changeDeviceName::${rackId}::${deviceId}::${deviceName}`;
-        udp.send(result, 0, message.length, PORT_UDP, HOST_UDP, function(err, bytes) {
+        console.log(result);
+        var buf = new Buffer(result);
+        udp.send(buf, 0, buf.length, PORT_UDP, HOST_UDP, function(err, bytes) {
             if (err) throw err;
           });
         socket.broadcast.emit('changeDeviceName', result);
