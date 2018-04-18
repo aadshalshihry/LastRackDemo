@@ -39,57 +39,58 @@ void udpcontroller::onSocketError(QAbstractSocket::SocketError socketError){
  * */
 void udpcontroller::readyRead(){
      QByteArray buffer;
-     buffer.resize(socket->pendingDatagramSize());
-
      QHostAddress sender;
      quint16 senderPort;
+     while (socket->hasPendingDatagrams()) {
+         buffer.resize(socket->pendingDatagramSize());
+         socket->readDatagram(buffer.data(), buffer.size(),
+                                  &sender, &senderPort);
+         qDebug() <<buffer << "::" << sender;
+         QString *data = new QString(buffer);
+         qDebug() << data;
+         QStringList dataList;
+         if(data->contains("serverinit", Qt::CaseInsensitive)){
+            //write JSON parser
+         }else if(data->contains("addVm", Qt::CaseInsensitive)){
+            dataList = data->split("::");
+            //RackId is 1
+            //DeviceId is 2
+            //vmId is 3
+            //vmState is 4
+            //vmName is 5
+            //not implemented change
 
-     socket->readDatagram(buffer.data(), buffer.size(),
-                              &sender, &senderPort);
-     QString *data = new QString(buffer);
-     qDebug() << data;
-     QStringList dataList;
-     if(data->contains("serverinit", Qt::CaseInsensitive)){
-        //write JSON parser
-     }else if(data->contains("addVm", Qt::CaseInsensitive)){
-        dataList = data->split("::");
-        //RackId is 1
-        //DeviceId is 2
-        //vmId is 3
-        //vmState is 4
-        //vmName is 5
-        //not implemented change
+            int vmStateId = stateToInt(dataList[4]);
+            emit addVmSignal(dataList[1], dataList[2], dataList[3], vmStateId, dataList[5] );
+         }else if(data->contains("changeVMState", Qt::CaseInsensitive)){
+             dataList = data->split("::");
+             //RackId is 1
+             //DeviceId is 2
+             //vmId is 3
+             //vmState is 4
 
-        int vmStateId = stateToInt(dataList[4]);
-        emit addVmSignal(dataList[1], dataList[2], dataList[3], vmStateId, dataList[5] );
-     }else if(data->contains("changeVMState", Qt::CaseInsensitive)){
-         dataList = data->split("::");
-         //RackId is 1
-         //DeviceId is 2
-         //vmId is 3
-         //vmState is 4
+             int vmStateId = stateToInt(dataList[4]);
+             //((MainWindows *)parentWindow)->changeVMState(dataList[1], dataList[2], dataList[3], vmStateId);
+             emit changeVMStateSignal(dataList[1], dataList[2], dataList[3], vmStateId);
 
-         int vmStateId = stateToInt(dataList[4]);
-         //((MainWindows *)parentWindow)->changeVMState(dataList[1], dataList[2], dataList[3], vmStateId);
-         emit changeVMStateSignal(dataList[1], dataList[2], dataList[3], vmStateId);
+         }else if(data->contains("changeDeviceState", Qt::CaseInsensitive)){
+             dataList = data->split("::");
+             //RackId is 1
+             //DeviceId is 2
+             //state is 3
+             int deviceStateInt = stateToInt(dataList[3]);
 
-     }else if(data->contains("changeDeviceState", Qt::CaseInsensitive)){
-         dataList = data->split("::");
-         //RackId is 1
-         //DeviceId is 2
-         //state is 3
-         int deviceStateInt = stateToInt(dataList[3]);
+             //((MainWindows *)parentWindow)->changeDeviceState(dataList[1], dataList[2], deviceStateInt);
+             emit changeDeviceStateSignal(dataList[1], dataList[2], deviceStateInt);
 
-         //((MainWindows *)parentWindow)->changeDeviceState(dataList[1], dataList[2], deviceStateInt);
-         emit changeDeviceStateSignal(dataList[1], dataList[2], deviceStateInt);
-
-     }else if(data->contains("changeDeviceName", Qt::CaseInsensitive)){
-         dataList = data->split("::");
-         //RackId is 1
-         //deviceId is 2
-         //deviceName is 3
-         //((MainWindows *)parentWindow)->changeDeviceName(dataList[1], dataList[2], dataList[3]);
-         emit changeDeviceNameSignal(dataList[1], dataList[2], dataList[3]);
+         }else if(data->contains("changeDeviceName", Qt::CaseInsensitive)){
+             dataList = data->split("::");
+             //RackId is 1
+             //deviceId is 2
+             //deviceName is 3
+             //((MainWindows *)parentWindow)->changeDeviceName(dataList[1], dataList[2], dataList[3]);
+             emit changeDeviceNameSignal(dataList[1], dataList[2], dataList[3]);
+         }
      }
 }
 
