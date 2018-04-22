@@ -2,10 +2,10 @@
 #include "ui_mainwindows.h"
 #include "rack.h"
 #include <QDebug>
-#include "udpcontroller.h"
 #include <iostream>
 #include "QScrollArea"
 #include <memory>
+#include <QThread>
 
 MainWindows::MainWindows(QWidget *parent) :
     QWidget(parent),
@@ -25,10 +25,16 @@ MainWindows::MainWindows(QWidget *parent) :
     this->racks.append(addRacks(scrollLayout));
     this->racks.append(addRacks(scrollLayout));
     udpcontroller mycontroller;
+
+    QThread *myThread = new QThread;
+    mycontroller.moveToThread(myThread);
     connect(&mycontroller, SIGNAL(changeDeviceStateSignal(QString, QString, int)),
             this, SLOT(changeDeviceStateSlot(QString,QString,int)));
     connect(&mycontroller, SIGNAL(changeDeviceNameSignal(QString,QString,QString)),
             this, SLOT(changeDeviceNameSlot(QString,QString,QString)));
+    myThread->start();
+
+
 }
 
 
@@ -85,6 +91,7 @@ void MainWindows::changeDeviceState(QString rackIdstr, QString deviceIdstr, int 
 }
 
 void MainWindows::changeDeviceStateSlot(QString rackIdstr, QString deviceIdstr, int devStatestr){
+    qDebug()<<"We reached mainwindows slot";
     changeDeviceState(rackIdstr,deviceIdstr,devStatestr);
 }
 void MainWindows::changeDeviceName(QString rackIdstr, QString deviceIdstr, QString devNamestr){
@@ -297,4 +304,14 @@ void MainWindows::on_lineEdit_2_textChanged(const QString &arg1)
                    racks[i]->devices[j]->show();
            }
     }
+}
+
+void MainWindows::connect_socket(udpcontroller &mycontroller)
+{
+    connect(&mycontroller, SIGNAL(changeDeviceStateSignal(QString, QString, int)),
+            this, SLOT(changeDeviceStateSlot(QString,QString,int)));
+    connect(&mycontroller, SIGNAL(changeVMStateSignal(QString, QString, QString, int)),
+            this, SLOT(changeVMStateSlot(QString,QString,QString, int)));
+    connect(&mycontroller, SIGNAL(changeDeviceNameSignal(QString,QString,QString)),
+            this, SLOT(changeDeviceNameSlot(QString,QString,QString)));
 }

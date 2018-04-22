@@ -12,7 +12,7 @@ const udp = dgram.createSocket('udp4');
 // our localhost port
 const port = 4001
 
-const PORT_UDP = 4003;
+const PORT_UDP = 4001;
 const HOST_UDP = '127.0.0.1';
 
 const app = express()

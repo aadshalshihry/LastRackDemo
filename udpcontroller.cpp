@@ -4,7 +4,7 @@ udpcontroller::udpcontroller(QObject *parent) : QObject(parent)
 {
     socket = new QUdpSocket(this);
 
-    if(socket->bind(QHostAddress::LocalHost,4003,QUdpSocket::ShareAddress)) //even if local Host dont have static IP( on subnet expected 172.168.x.x),still it becomes true and enters if.
+    if(socket->bind(QHostAddress::LocalHost,4001,QUdpSocket::ShareAddress)) //even if local Host dont have static IP( on subnet expected 172.168.x.x),still it becomes true and enters if.
         {
         if( (socket->state() == QAbstractSocket::BoundState) && (((socket->localAddress()).protocol()) == QAbstractSocket::IPv4Protocol) ) //ignore protocol validation if not required.
             {
@@ -25,8 +25,8 @@ udpcontroller::udpcontroller(QObject *parent) : QObject(parent)
     //socket->bind(QHostAddress::Any, 4003);
     qDebug() << "Connected!";
     connect(socket, SIGNAL(readyRead()), this, SLOT(readyRead()));
-    connect(socket, SIGNAL(error(QAbstractSocket::SocketError)),
-            this, SLOT(onSocketError(QAbstractSocket::SocketError)));
+   // connect(socket, SIGNAL(error(QAbstractSocket::SocketError)),
+     //       this, SLOT(onSocketError(QAbstractSocket::SocketError)));
     //qDebug() << socket->readAll();
 }
 
@@ -79,10 +79,8 @@ void udpcontroller::readyRead(){
              //DeviceId is 2
              //state is 3
              int deviceStateInt = stateToInt(dataList[3]);
-
              //((MainWindows *)parentWindow)->changeDeviceState(dataList[1], dataList[2], deviceStateInt);
              emit changeDeviceStateSignal(dataList[1], dataList[2], deviceStateInt);
-
          }else if(data->contains("changeDeviceName", Qt::CaseInsensitive)){
              dataList = data->split("::");
              //RackId is 1
@@ -91,7 +89,11 @@ void udpcontroller::readyRead(){
              //((MainWindows *)parentWindow)->changeDeviceName(dataList[1], dataList[2], dataList[3]);
              emit changeDeviceNameSignal(dataList[1], dataList[2], dataList[3]);
          }
+         qDebug() << "Message from: " << sender.toString();
+         qDebug() << "Message port: " << senderPort;
+         qDebug() << "Message: " << buffer;
      }
+
 }
 
 

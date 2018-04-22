@@ -3,7 +3,7 @@
 
 #include <QUdpSocket>
 #include <QObject>
-#include <mainwindows.h>
+//#include <mainwindows.h>
 
 class udpcontroller : public QObject
 {

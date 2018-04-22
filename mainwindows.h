@@ -5,6 +5,9 @@
 #include <QString>
 #include "rack.h"
 #include "QHBoxLayout"
+#include "udpcontroller.h"
+
+
 
 
 namespace Ui {
@@ -25,6 +28,7 @@ public:
     void changeDeviceState(QString rackIdstr, QString deviceIdstr, int devStatestr);
     void changeVMState(QString rackIdstr, QString deviceIdstr, QString vmIdstr, int vmStatestr);
     void changeDeviceName(QString rackIdstr, QString deviceIdstr, QString devNamestr);
+    void connect_socket(udpcontroller &myController);
 
 
 
