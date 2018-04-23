@@ -13,12 +13,14 @@ Rack::Rack(QWidget *parent) :
     ui->scrollAreaWidgetContents->layout()->setAlignment(Qt::AlignTop);
 }
 
-void Rack::addDumyRecord()
+void Rack::addDumyRecordForRackOne()
 {
+    this->rakcId = 0;
+
     Device *d = new Device(this, "SER-2 SW-1");
     this->devices.append(d);
     this->deviceSize++;
-    this->devices[0]->addVm("Vim");
+    this->devices[0]->addVm("VmHdx");
     ui->scrollAreaWidgetContents->layout()->addWidget(d);
 
     Device *d1 = new Device(this, "SER-2 SW-2");
@@ -89,6 +91,38 @@ void Rack::addDumyRecord()
     this->devices.append(d14);
     this->deviceSize++;
     ui->scrollAreaWidgetContents->layout()->addWidget(d14);
+}
+
+void Rack::addDumyRecordForRackTow()
+{
+    this->rakcId = 1;
+
+    Device *d = new Device(this, "SER-2 RC1");
+    this->devices.append(d);
+    this->deviceSize++;
+    this->devices[0]->addVm("VmHdx");
+    ui->scrollAreaWidgetContents->layout()->addWidget(d);
+
+    Device *d1 = new Device(this, "SER-2 RC1");
+    this->devices.append(d1);
+    this->deviceSize++;
+    ui->scrollAreaWidgetContents->layout()->addWidget(d1);
+}
+
+void Rack::addDumyRecordForRackThree()
+{
+    this->rakcId = 2;
+
+    Device *d = new Device(this, "SER-1 RC2");
+    this->devices.append(d);
+    this->deviceSize++;
+    ui->scrollAreaWidgetContents->layout()->addWidget(d);
+
+    Device *d1 = new Device(this, "SER-2 RC2");
+    this->devices.append(d1);
+    this->deviceSize++;
+    this->devices[1]->addVm("VmDD3");
+    ui->scrollAreaWidgetContents->layout()->addWidget(d1);
 }
 
 Rack::~Rack()

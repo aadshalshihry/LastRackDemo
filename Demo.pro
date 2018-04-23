@@ -18,18 +18,15 @@ SOURCES += main.cpp\
     rack.cpp \
     device.cpp \
     vm.cpp \
-    dialog.cpp \
     udpcontroller.cpp
 
 HEADERS  += mainwindows.h \
     rack.h \
     device.h \
     vm.h \
-    dialog.h \
     udpcontroller.h
 
 FORMS    += mainwindows.ui \
     rack.ui \
     device.ui \
-    vm.ui \
-    dialog.ui
+    vm.ui

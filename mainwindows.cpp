@@ -14,16 +14,16 @@ MainWindows::MainWindows(QWidget *parent) :
     ui->setupUi(this);
     racks = {};
     racknum = 3;
-    sizeW = 400*racknum;
+//    sizeW = 400*racknum;
 
     ui->scrollAreaWidgetContents->resize(sizeW,ui->scrollAreaWidgetContents->height());
     //resize based on num racks which allows for scaleability, currently being hard set to 3 racks, verticle will need to be dynamicaly built based on racks size as well, nSure why resize
     //isn't functioning correctly.
     QHBoxLayout *scrollLayout = new QHBoxLayout();
     ui->scrollAreaWidgetContents->setLayout(scrollLayout);
-    this->racks.append(addRacks(scrollLayout));
-    this->racks.append(addRacks(scrollLayout));
-    this->racks.append(addRacks(scrollLayout));
+    this->racks.append(addRacks(scrollLayout, 0));
+    this->racks.append(addRacks(scrollLayout, 1));
+    this->racks.append(addRacks(scrollLayout, 2));
     udpcontroller mycontroller;
 
     QThread *myThread = new QThread;
@@ -44,14 +44,22 @@ MainWindows::~MainWindows()
 }
 
 
-Rack* MainWindows::addRacks(QHBoxLayout *scrollLayout)
+Rack* MainWindows::addRacks(QHBoxLayout *scrollLayout, int rackId)
 {
     rack = new Rack(this);
     scrollLayout->addWidget(rack);
-    rack->addDumyRecord();
+    if(rackId == 0) {
+        rack->addDumyRecordForRackOne();
+    } else if(rackId == 1) {
+        rack->addDumyRecordForRackTow();
+    } else {
+        rack->addDumyRecordForRackThree();
+    }
+
     return rack;
 
 }
+
 void MainWindows::on_pushButton_5_clicked()
 {
     int rackId = ui->spinBox_3->text().toInt();

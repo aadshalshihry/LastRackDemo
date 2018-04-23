@@ -89,14 +89,14 @@ class showDeviceVmCard extends Component {
         		<div>
               <Button size="small" color='green' value="Operational" onClick={this.onDeviceClickHandler}>&nbsp;</Button>
         			<Button size="small" color='red' value="Faulted" onClick={this.onDeviceClickHandler}>&nbsp;</Button>
-      		    <Button size="small" color='orange' value="Offline" onClick={this.onDeviceClickHandler}>&nbsp;</Button>
-      		    <Button size="small" color='yellow' value="Degraded" onClick={this.onDeviceClickHandler}>&nbsp;</Button>
+      		    <Button size="small" color='yellow' value="Offline" onClick={this.onDeviceClickHandler}>&nbsp;</Button>
+      		    <Button size="small" color='orange' value="Degraded" onClick={this.onDeviceClickHandler}>&nbsp;</Button>
               <Button size="small" color='black' value="Disconnected" onClick={this.onDeviceClickHandler}>&nbsp;</Button>
         		</div>
         	</div>
 
           {vm && vm.map(vv => {
-            if(device.deviceId === vv.deviceId) {
+            if(device.deviceId === vv.deviceId && rackId === vv.rackId) {
               return(
                 <div key={vv._id} className="vmDiv">
                 	<div className="vmTitleButtons">
@@ -108,10 +108,10 @@ class showDeviceVmCard extends Component {
                       <Button size="mini" color='red' value="Faulted" 
                         onClick={(e) => this.onVmClickHandler(e, vv.vmId)}>&nbsp;</Button>
 
-                      <Button size="mini" color='orange' value="Offline" 
+                      <Button size="mini" color='yellow' value="Offline" 
                         onClick={(e) => this.onVmClickHandler(e, vv.vmId)}>&nbsp;</Button>
 
-                      <Button size="mini" color='yellow' value="Degraded" 
+                      <Button size="mini" color='orange' value="Degraded" 
                         onClick={(e) => this.onVmClickHandler(e, vv.vmId)}>&nbsp;</Button>
 
                       <Button size="mini" color='black' value="Disconnected" 

@@ -18,7 +18,9 @@ class Rack : public QScrollArea
 
 public:
     explicit Rack(QWidget *parent = 0);
-    void addDumyRecord();
+    void addDumyRecordForRackOne();
+    void addDumyRecordForRackTow();
+    void addDumyRecordForRackThree();
 
     ~Rack();
     QVector<Device*> devices;
@@ -26,6 +28,7 @@ public:
 
 private:
     Ui::Rack *ui;
+    int rakcId;
 
 };
 

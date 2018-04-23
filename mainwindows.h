@@ -21,7 +21,7 @@ class MainWindows : public QWidget
 public:
     explicit MainWindows(QWidget *parent = 0);
     ~MainWindows();
-    Rack* addRacks(QHBoxLayout* scrollLayout);
+    Rack* addRacks(QHBoxLayout* scrollLayout, int rackId);
     QVector<Rack*> racks;
 
     void addVm(QString rackIdstr,QString deviceIdstr, QString vmIdstr, int vmStatestr, QString vmName);
