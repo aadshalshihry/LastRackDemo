@@ -90,7 +90,8 @@ class showDeviceVmCard extends Component {
         			<Button size="mini" color='red' value="Faulted" onClick={this.onDeviceClickHandler}>&nbsp;</Button>
       		    <Button size="mini" color='orange' value="Offline" onClick={this.onDeviceClickHandler}>&nbsp;</Button>
       		    <Button size="mini" color='yellow' value="Degraded" onClick={this.onDeviceClickHandler}>&nbsp;</Button>
-      		    <Button size="mini" color='black' value="F" onClick={this.onDeviceClickHandler}>&nbsp;</Button>
+              <Button size="mini" color='black' value="Disconnected" onClick={this.onDeviceClickHandler}>&nbsp;</Button>
+      		    <Button size="mini" color='black' value="Online" onClick={this.onDeviceClickHandler}>&nbsp;</Button>
         		</div>
         	</div>
 

@@ -150,7 +150,8 @@ io.on('connection', socket => {
 
   socket.on('loadData', (d) => {
     const result = JSON.stringify(data);
-		fs.writeFile('data.js', data, function (err) {
+    // console.log("***", result);
+		fs.writeFile('data.js', result, function (err) {
 		  if (err) throw err;
 		});
     socket.broadcast.emit('loadData', data);

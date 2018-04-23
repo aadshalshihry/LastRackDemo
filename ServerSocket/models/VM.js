@@ -17,7 +17,7 @@ const schema = new mongoose.Schema({
   },
   state: {
     type: String,
-    enum: ['Faulted','Offline', 'Degraded', 'Not Connected'],
+    enum: ['Faulted','Offline', 'Degraded', 'Disconnected', 'Operational'],
     default: 'Faulted'
   },
   rackId: {

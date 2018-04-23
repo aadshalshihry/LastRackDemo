@@ -50,6 +50,8 @@ class DeviceChangeComponent extends Component {
           <option defaultValue value="Faulted">Faulted</option>
           <option value="Offline">Offline</option>
           <option value="Degraded">Degraded</option>
+          <option value="Disconnected">Disconnected</option>
+          <option value="Online">Online</option>
         </select>
         <p>RackId</p>
         <input type="number" value={this.state.rackId} onChange={this.rackIdChange}/>
