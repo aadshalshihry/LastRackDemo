@@ -87,11 +87,11 @@ class showDeviceVmCard extends Component {
             }
 
         		<div>
-        			<Button size="mini" color='red' value="Faulted" onClick={this.onDeviceClickHandler}>&nbsp;</Button>
-      		    <Button size="mini" color='orange' value="Offline" onClick={this.onDeviceClickHandler}>&nbsp;</Button>
-      		    <Button size="mini" color='yellow' value="Degraded" onClick={this.onDeviceClickHandler}>&nbsp;</Button>
-              <Button size="mini" color='black' value="Disconnected" onClick={this.onDeviceClickHandler}>&nbsp;</Button>
-      		    <Button size="mini" color='black' value="Online" onClick={this.onDeviceClickHandler}>&nbsp;</Button>
+              <Button size="small" color='green' value="Operational" onClick={this.onDeviceClickHandler}>&nbsp;</Button>
+        			<Button size="small" color='red' value="Faulted" onClick={this.onDeviceClickHandler}>&nbsp;</Button>
+      		    <Button size="small" color='orange' value="Offline" onClick={this.onDeviceClickHandler}>&nbsp;</Button>
+      		    <Button size="small" color='yellow' value="Degraded" onClick={this.onDeviceClickHandler}>&nbsp;</Button>
+              <Button size="small" color='black' value="Disconnected" onClick={this.onDeviceClickHandler}>&nbsp;</Button>
         		</div>
         	</div>
 
@@ -101,16 +101,24 @@ class showDeviceVmCard extends Component {
                 <div key={vv._id} className="vmDiv">
                 	<div className="vmTitleButtons">
                   	<h3 className="listTitleVm">{vv.vmName}</h3>
-                		<span>
-                			<input type="button" className="vmBtn" value="Faulted"
-                				onClick={(e) => this.onVmClickHandler(e, vv.vmId)}/>
-                			<input type="button" className="vmBtn" value="Offline"
-                				onClick={(e) => this.onVmClickHandler(e, vv.vmId)}/>
-                			<input type="button" className="vmBtn" value="Degraded"
-                				onClick={(e) => this.onVmClickHandler(e, vv.vmId)}/>
-                			<input type="button" className="vmBtn" value="F"
-                				onClick={(e) => this.onVmClickHandler(e, vv.vmId)}/>
-                		</span>
+                    <div>
+                      <Button size="mini" color='green' value="Operational" 
+                      onClick={(e) => this.onVmClickHandler(e, vv.vmId)}>&nbsp;</Button>
+
+                      <Button size="mini" color='red' value="Faulted" 
+                        onClick={(e) => this.onVmClickHandler(e, vv.vmId)}>&nbsp;</Button>
+
+                      <Button size="mini" color='orange' value="Offline" 
+                        onClick={(e) => this.onVmClickHandler(e, vv.vmId)}>&nbsp;</Button>
+
+                      <Button size="mini" color='yellow' value="Degraded" 
+                        onClick={(e) => this.onVmClickHandler(e, vv.vmId)}>&nbsp;</Button>
+
+                      <Button size="mini" color='black' value="Disconnected" 
+                      onClick={(e) => this.onVmClickHandler(e, vv.vmId)}>&nbsp;</Button>
+
+                    </div>
+                		
                 	</div>
                 </div>
               )

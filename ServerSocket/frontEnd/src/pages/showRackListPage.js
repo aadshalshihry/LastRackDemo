@@ -43,7 +43,7 @@ class ShowRackListPage extends Component {
             > Name: {val.rackName} - Id: {val.rackId}</option>
           })}
         </select>
-        <p className="rackTitle">{rack && rack[this.state.rackId].rackName}</p>
+        <p className="rackTitle">Title: {rack && rack[this.state.rackId].rackName}</p>
         <ShowRackCard
           rackId={parseInt(this.state.rackId)}
           device={device}
